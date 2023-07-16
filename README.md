@@ -82,10 +82,6 @@ Generate new JWT secret key for your application
 php artisan jwt:secret
 ```
 
-Run Database Seeder to populate the database
-```bash
-php artisan db:seed
-```
 Add the middleware to your `$middlewareAliases` inside your `app/Http/Kernel.php` file.
 
 ```php
@@ -144,6 +140,29 @@ Create a DB Seeder in your app using this
     ``` 
 </details>
 
+Run Database Seeder to populate the database
+```bash
+php artisan db:seed
+```
+
+# Credentials
+
+###### SUPER USER
+```
+superuser@mail.com
+superuser
+```
+###### ADMIN
+```
+admin@mail.com
+admin
+```
+###### USER
+```
+user@mail.com
+user
+```
+
 
 ## Usage
 
@@ -155,10 +174,16 @@ Make sure to add `Content-Type` and `Accept` with `application/json` value
 - SUPER USER have an ability to take all an action in the system
 - ADMIN has an ability almost the same with the `SUPER USER` but doesn't have any ability to `Delete` any record.
 - USERs have an ability to view only his profile.
+- The best practice approach is to check the permissions not the role, as the Roles stand only for the sets of permissions you've created and not the actual user ability on the system. By doing the Role checking only it will make our system vulnerable.
+- When creating a new `Role`, you need to supply an `id` of the `Permissions` you want to associate with the Role that you will be creating.
+- The API route will be checked if the request is authorized, and if the authorized user has the required role or ability to perform an action of the specific API route.
+- When associating a `Role` to newly created user, use the name of the `Role`.
 
 ## API Authorization checking login
 
 - The API entry point will check the authenticated user if the user has the right role, or the have an ability to perform the action.
+
+##
 
 ## Testing
 
