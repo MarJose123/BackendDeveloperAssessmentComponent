@@ -183,7 +183,105 @@ Make sure to add `Content-Type` and `Accept` with `application/json` value
 
 - The API entry point will check the authenticated user if the user has the right role, or the have an ability to perform the action.
 
-##
+## API Entry Point documentation
+
+----
+
+###### User Authentication
+- http://{SERVER_IP}/auth/login
+  - Method: POST
+  - Body (JSON)
+    - Email
+    - Password
+  - Headers:
+    - Content-type : application/json
+    - Accept : application/json
+###### Roles and Permissions
+- http://{SERVER_IP}/security/role
+    - Method: POST
+  - Body (JSON)
+      - role_name
+      - permissions
+    - Headers:
+        - Content-type : application/json
+        - Accept : application/json
+- http://{SERVER_IP}/security/roles
+    - Method: GET
+    - Headers:
+        - Content-type : application/json
+        - Accept : application/json
+- http://{SERVER_IP}/security/permissions
+    - Method: GET
+    - Headers:
+        - Content-type : application/json
+        - Accept : application/json
+###### View/Add Users
+- http://{SERVER_IP}/account/users
+    - Method: GET
+    - Headers:
+        - Content-type : application/json
+        - Accept : application/json
+- http://{SERVER_IP}/account/users
+    - Method: POST
+    - Body (JSON)
+        - name
+        - email
+        - password
+    - Headers:
+        - Content-type : application/json
+        - Accept : application/json
+
+
+
+---
+###### API Response structure For Authentication
+```json
+{
+  "status": "success",
+  "code": 200,
+  "message": "Successfully Logged in",
+  "data": {
+    "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOi8vMTI3LjAuMC4xOjgwMDAvYXV0aC9sb2dpbiIsImlhdCI6MTY4OTQ4MzE0MiwiZXhwIjoxNjg5NDg2NzQyLCJuYmYiOjE2ODk0ODMxNDIsImp0aSI6IjQ2bXFCTWpnT3Q3WEVWekwiLCJzdWIiOiIzIiwicHJ2IjoiMjNiZDVjODk0OWY2MDBhZGIzOWU3MDFjNDAwODcyZGI3YTU5NzZmNyJ9.fApPnuL4idWR_ytkofk_VURoleXZegyl-ywIU_RkAvQ",
+    "token_type": "bearer",
+    "expires_in": 3600
+  }
+}
+```
+###### API Response structure For Retrieve
+```json
+{
+  "status": "success",
+  "code": 200,
+  "message": "List of all User",
+  "count": 3,
+  "data": [
+    {
+      "id": 1,
+      "name": "SUPER USER",
+      "email": "superuser@mail.com",
+      "email_verified_at": null,
+      "created_at": "2023-07-15T08:51:05.000000Z",
+      "updated_at": "2023-07-15T08:51:05.000000Z"
+    },
+    {
+      "id": 2,
+      "name": "ADMIN",
+      "email": "admin@mail.com",
+      "email_verified_at": null,
+      "created_at": "2023-07-15T08:51:05.000000Z",
+      "updated_at": "2023-07-15T08:51:05.000000Z"
+    },
+    {
+      "id": 3,
+      "name": "USER",
+      "email": "user@mail.com",
+      "email_verified_at": null,
+      "created_at": "2023-07-15T08:51:05.000000Z",
+      "updated_at": "2023-07-15T08:51:05.000000Z"
+    }
+  ]
+}
+```
 
 ## Testing
 
