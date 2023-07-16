@@ -9,7 +9,7 @@ class AuthenticationController
 {
     public function login(Request $request)
     {
-        if (! $request->has('email') || ! $request->has('password')) {
+        if (!$request->hasAny(['email', 'password'])) {
             return response()->json([
                 'status' => 'failed',
                 'code' => Response::HTTP_UNPROCESSABLE_ENTITY,
@@ -62,16 +62,6 @@ class AuthenticationController
                 'token_type' => 'bearer',
                 'expires_in' => auth()->factory()->getTTL() * 60,
             ],
-        ], Response::HTTP_OK);
-    }
-
-    public function me()
-    {
-        return response()->json([
-            'status' => 'success',
-            'code' => Response::HTTP_OK,
-            'message' => null,
-            'data' => auth()->user(),
         ], Response::HTTP_OK);
     }
 }

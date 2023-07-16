@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use MarJose123\BackendDeveloperAssessmentComponent\Http\Controllers\AccountController;
 use MarJose123\BackendDeveloperAssessmentComponent\Http\Controllers\AuthenticationController;
 use MarJose123\BackendDeveloperAssessmentComponent\Http\Controllers\RoleController;
 
@@ -28,14 +29,18 @@ Route::prefix('security')
     ->group(function () {
         Route::post('role', [RoleController::class, 'store'])->middleware('role_or_permission:SUPER_USER|ADMIN|Add Role');
         Route::get('roles', [RoleController::class, 'roleList'])->middleware('role_or_permission:SUPER_USER|ADMIN|View Role');
+        Route::delete('role/{id}', [RoleController::class, 'delete'])->middleware('role_or_permission:SUPER_USER|Delete Role');
         Route::get('permissions', [RoleController::class, 'permissionList'])->middleware('role_or_permission:SUPER_USER|ADMIN|View Permissions');
     });
 
 /*
  * Profile API Route View
  */
-Route::prefix('profile')
+Route::prefix('account')
     ->middleware(['auth:api', 'api'])
     ->group(function () {
-        Route::get('/', [AuthenticationController::class, 'me']);
+        Route::get('/profile', [AccountController::class, 'profile']);
+        Route::get('/users', [AccountController::class, 'index'])->middleware('role_or_permission:SUPER_USER|ADMIN|View User');
+        Route::post('/user', [AccountController::class, 'store'])->middleware('role_or_permission:SUPER_USER|ADMIN|Add User');
+        Route::delete('/user/{id}', [AccountController::class, 'destroy'])->middleware('role_or_permission:SUPER_USER|Delete User');
     });

@@ -66,6 +66,16 @@ class RoleController
 
     }
 
+    public function delete(string $id)
+    {
+         Role::findById($id)->delete();
+        return response()->json([
+            'status' => 'success',
+            'code' => Response::HTTP_OK,
+            'message' => 'Role has been successfully deleted.'
+        ], Response::HTTP_OK);
+    }
+
     public function permissionList()
     {
         return response()->json([
