@@ -1,4 +1,7 @@
 <?php
+/*
+ * Copyright (c) 2023.  LF Backend Developer Assessment by Josie Noli Darang.
+ */
 
 namespace MarJose123\BackendDeveloperAssessmentComponent\Http\Controllers;
 
@@ -9,7 +12,7 @@ class AuthenticationController
 {
     public function login(Request $request)
     {
-        if (!$request->hasAny(['email', 'password'])) {
+        if (! $request->hasAny(['email', 'password'])) {
             return response()->json([
                 'status' => 'failed',
                 'code' => Response::HTTP_UNPROCESSABLE_ENTITY,

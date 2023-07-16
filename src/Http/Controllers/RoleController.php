@@ -1,4 +1,7 @@
 <?php
+/*
+ * Copyright (c) 2023.  LF Backend Developer Assessment by Josie Noli Darang.
+ */
 
 namespace MarJose123\BackendDeveloperAssessmentComponent\Http\Controllers;
 
@@ -68,11 +71,12 @@ class RoleController
 
     public function delete(string $id)
     {
-         Role::findById($id)->delete();
+        Role::findById($id)->delete();
+
         return response()->json([
             'status' => 'success',
             'code' => Response::HTTP_OK,
-            'message' => 'Role has been successfully deleted.'
+            'message' => 'Role has been successfully deleted.',
         ], Response::HTTP_OK);
     }
 
