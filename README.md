@@ -188,7 +188,7 @@ Make sure to add `Content-Type` and `Accept` with `application/json` value
 ----
 
 ###### User Authentication
-- http://{SERVER_IP}/auth/login
+- http://{SERVER_IP}/api/auth/login
   - Method: POST
   - Body (JSON)
     - Email
@@ -197,7 +197,7 @@ Make sure to add `Content-Type` and `Accept` with `application/json` value
     - Content-type : application/json
     - Accept : application/json
 ###### Roles and Permissions
-- http://{SERVER_IP}/security/role
+- http://{SERVER_IP}/api/security/role
     - Method: POST
   - Body (JSON)
       - role_name
@@ -205,23 +205,23 @@ Make sure to add `Content-Type` and `Accept` with `application/json` value
     - Headers:
         - Content-type : application/json
         - Accept : application/json
-- http://{SERVER_IP}/security/roles
+- http://{SERVER_IP}/api/security/roles
     - Method: GET
     - Headers:
         - Content-type : application/json
         - Accept : application/json
-- http://{SERVER_IP}/security/permissions
+- http://{SERVER_IP}/api/security/permissions
     - Method: GET
     - Headers:
         - Content-type : application/json
         - Accept : application/json
 ###### View/Add Users
-- http://{SERVER_IP}/account/users
+- http://{SERVER_IP}/api/account/users
     - Method: GET
     - Headers:
         - Content-type : application/json
         - Accept : application/json
-- http://{SERVER_IP}/account/users
+- http://{SERVER_IP}/api/account/users
     - Method: POST
     - Body (JSON)
         - name
